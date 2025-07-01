@@ -1,4 +1,4 @@
-# student-admin-portal
+# University-Management-System
 
 A multi-role university management system providing real-time access for Admin, Instructor, and Student users, built using the MERN stack.
 
