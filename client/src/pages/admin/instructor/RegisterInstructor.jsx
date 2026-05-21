@@ -28,17 +28,14 @@ export default function RegisterInstructor() {
         1,
         signupDetails
       );
-      const data = res.data;
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
         setIsLoading(false);
         return;
       }
       toast.success(res.message, toastSuccessObject);
-      console.log("Log data", data);
       navigate("/admin/instructors/action");
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }

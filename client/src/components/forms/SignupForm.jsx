@@ -6,7 +6,6 @@ export default function SignupForm({
   signup,
   update
 }) {
-  console.log(signupDetails)
   return (
     <form onSubmit={(event) => signup(event)}>
       <div className="row">

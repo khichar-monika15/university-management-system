@@ -31,17 +31,14 @@ export default function RegisterCourse() {
         1,
         {...signupDetails, adminId}
       );
-      const data = res.data;
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
         setIsLoading(false);
         return;
       }
       toast.success(res.message, toastSuccessObject);
-      console.log("Log data", data);
       navigate("/admin/courses/action");
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }

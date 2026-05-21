@@ -30,15 +30,12 @@ export default function AdminSettings() {
         2,
         adminDetails
       );
-      const data = res.data;
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
         setIsLoading(false);
         return;
       }
       toast.success(res.message, toastSuccessObject);
-
-      // state update
       let updatedData = {
         ...adminData,
         fname: adminDetails.fname,
@@ -48,10 +45,8 @@ export default function AdminSettings() {
       }
       setAdminData(updatedData);
       localStorage.setItem("admin", JSON.stringify(updatedData));
-      console.log("Log data", data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }

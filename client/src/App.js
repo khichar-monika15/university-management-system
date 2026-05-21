@@ -83,7 +83,7 @@ export default function App() {
             element={studentData ? <Courses /> : <StudentLogin />}
           />
           <Route
-            path="student/register/course"
+            path="/student/register/course"
             element={studentData ? <RegisterCourseStudent /> : <StudentLogin />}
           />
           <Route

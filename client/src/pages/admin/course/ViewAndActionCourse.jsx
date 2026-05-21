@@ -25,11 +25,9 @@ export default function ViewAndActionCourse() {
           setIsLoading(false);
           return;
         }
-        console.log("Log data", resData);
         setCourses(resData?.sort((a, b) => a.title.localeCompare(b.title)));
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
         setIsLoading(false);
       }
     }
@@ -47,20 +45,15 @@ export default function ViewAndActionCourse() {
         3,
         null
       );
-      const resData = res.data;
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
         setIsLoading(false);
         return;
       }
-      console.log("Log data", resData);
-      
-      // updating state
       let duplicateArray = [...courses];
       setCourses(duplicateArray.filter((item) => item._id !== id));
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }

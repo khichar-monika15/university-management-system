@@ -25,7 +25,6 @@ export default function ViewAndActionInstructor() {
           setIsLoading(false);
           return;
         }
-        console.log("Log data", resData);
         setInstructors(resData?.sort((a, b) => {
           const fnameComparison = a.fname.localeCompare(b.fname);
           if (fnameComparison !== 0) {
@@ -35,7 +34,6 @@ export default function ViewAndActionInstructor() {
         }));        
         setIsLoading(false);
       } catch (error) {
-        console.log(error);
         setIsLoading(false);
       }
     }
@@ -53,20 +51,15 @@ export default function ViewAndActionInstructor() {
         3,
         null
       );
-      const resData = res.data;
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
         setIsLoading(false);
         return;
       }
-      console.log("Log data", resData);
-      
-      // updating state
       let duplicateArray = [...instructors];
       setInstructors(duplicateArray.filter((item) => item._id !== id));
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   }

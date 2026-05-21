@@ -42,15 +42,9 @@ export async function fetchResponse(url, type, bodyData) {
   }
   try {
     const res = await fetch(url, options);
-    if (!res.ok) {
-      console.log("Network response was not OK.");
-    } else {
-      console.log("Response fetched successfully!");
-    }
     const jsonData = await res.json();
-    console.log("Response: ", jsonData);
     return jsonData;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }

@@ -3,42 +3,32 @@ import HomeLayout from "../../layouts/HomeLayout";
 import GeneralCard from "../../components/cards/GeneralCard";
 import LoginForm from "../../components/forms/LoginForm";
 import { fetchResponse } from "../../api/service";
-import { adminEndpoints } from "../../api/endpoints/adminEndpoints";
+import { studentEndpoints } from "../../api/endpoints/studentEndpoints";
 import { toastErrorObject, toastSuccessObject } from "../../utility/toasts";
 import { toast } from "react-toastify";
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminLogin() {
-  const { setAdminData } = useAuth();
-
+export default function StudentLogin() {
+  const { setStudentData } = useAuth();
   const navigate = useNavigate();
-
-  const [loginDetails, setLoginDetails] = useState({
-    email: "",
-    password: "",
-  });
+  const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleLogin(event) {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetchResponse(
-        adminEndpoints.loginAdmin(),
-        1,
-        loginDetails
-      );
-      const data = res.data;
+      const res = await fetchResponse(studentEndpoints.loginStudent(), 1, loginDetails);
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
         setIsLoading(false);
         return;
       }
       toast.success(res.message, toastSuccessObject);
-      setAdminData(data);
-      localStorage.setItem("admin", JSON.stringify(data));
-      navigate("/admin");
+      setStudentData(res.data);
+      localStorage.setItem("student", JSON.stringify(res.data));
+      navigate("/student");
     } catch (error) {
       setIsLoading(false);
     }
@@ -46,12 +36,12 @@ export default function AdminLogin() {
 
   return (
     <HomeLayout isLoading={isLoading}>
-      <GeneralCard header={"Admin Login"}>
+      <GeneralCard header={"Student Login"}>
         <LoginForm
           loginDetails={loginDetails}
           setLoginDetails={setLoginDetails}
           login={handleLogin}
-          domain={"admin"}
+          domain={"student"}
         />
       </GeneralCard>
     </HomeLayout>

@@ -12,10 +12,6 @@ const AuthProvider = ({ children }) => {
   const [adminData, setAdminData] = useState(
     JSON.parse(localStorage.getItem("admin"))
   );
-  console.log("instructorData", instructorData);
-  console.log("studentData", studentData);
-  console.log("adminData", adminData);
-
   return (
     <authContext.Provider
       value={{
